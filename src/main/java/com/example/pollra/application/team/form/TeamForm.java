@@ -66,6 +66,9 @@ public class TeamForm {
 			@AllArgsConstructor
 			@NoArgsConstructor
 			public static class Member {
+				@NotNull
+				private Long id;
+				
 				@NotBlank
 				private String name;
 				

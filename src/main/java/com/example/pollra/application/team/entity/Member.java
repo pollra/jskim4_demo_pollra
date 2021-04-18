@@ -1,4 +1,4 @@
-package com.example.pollra.application.member.entity;
+package com.example.pollra.application.team.entity;
 
 import com.example.pollra.application.team.entity.Team;
 import lombok.AllArgsConstructor;

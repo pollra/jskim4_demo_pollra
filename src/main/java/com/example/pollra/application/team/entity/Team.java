@@ -1,6 +1,5 @@
 package com.example.pollra.application.team.entity;
 
-import com.example.pollra.application.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
