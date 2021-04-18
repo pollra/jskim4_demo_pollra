@@ -35,6 +35,7 @@ public class TeamService {
 		return teamRepository.save(team);
 	}
 	
+	@Transactional
 	public Team modify(Long teamId, Team team) {
 		return mapper.modify(team, get(teamId));
 	}

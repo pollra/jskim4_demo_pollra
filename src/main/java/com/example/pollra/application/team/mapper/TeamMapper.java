@@ -26,6 +26,7 @@ public interface TeamMapper {
 	}
 	
 	@Mapping(target="id", ignore=true)
+	@Mapping(target="team", ignore=true)
 	Member modifyMember(Member source, @MappingTarget Member target);
 	
 	Team toEntity(TeamForm.Request.Add form);
