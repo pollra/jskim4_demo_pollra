@@ -1,8 +1,15 @@
 spring:
     datasource:
           driver-class-name: org.h2.Driver
-          url     : jdbc:h2:tcp://localhost/~/test
+          url: jdbc:h2:tcp://localhost/~/test
           username: sa
           password:
-    jpa       :
+#          data: classpath:config/sql/init.sql
+#    batch:
+#      initialize-schema: always
+    jpa:
         show-sql: true
+        hibernate:
+          ddl-auto: update
+server:
+    port: 9999

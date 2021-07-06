@@ -1,5 +1,6 @@
 package com.example.pollra.application.team.form;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.validation.Valid;
@@ -17,12 +18,13 @@ import java.util.List;
 public class TeamForm {
 	
 	public static class Request {
-		
+
 		@Setter
 		@Getter
 		@AllArgsConstructor
 		@NoArgsConstructor
-		public static class Add {
+		public static class Merge {
+
 			@NotBlank
 			private String name;
 			
@@ -35,37 +37,7 @@ public class TeamForm {
 			@AllArgsConstructor
 			@NoArgsConstructor
 			public static class Member {
-				@NotBlank
-				private String name;
-				
-				@NotNull
-				private Integer age;
-				
-				@NotBlank
-				private String createdAt;
-				
-				@NotNull
-				private LocalDateTime createdDt;
-			}
-		}
-		
-		@Setter
-		@Getter
-		@AllArgsConstructor
-		@NoArgsConstructor
-		public static class Modify {
-			@NotBlank
-			private String name;
-			
-			@Valid
-			@NotEmpty
-			private List<Member> members;
-			
-			@Setter
-			@Getter
-			@AllArgsConstructor
-			@NoArgsConstructor
-			public static class Member {
+
 				@NotNull
 				private Long id;
 				
@@ -80,6 +52,19 @@ public class TeamForm {
 				
 				@NotNull
 				private LocalDateTime createdDt;
+				
+				@JsonIgnore
+				private Team team;
+				
+				@Setter
+				@Getter
+				@AllArgsConstructor
+				@NoArgsConstructor
+				public static class Team {
+
+					@NotNull
+					private Long id;
+				}
 			}
 		}
 	}

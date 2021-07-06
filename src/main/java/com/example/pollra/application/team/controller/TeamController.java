@@ -1,6 +1,7 @@
 package com.example.pollra.application.team.controller;
 
 import com.example.pollra.application.team.form.TeamForm.*;
+import com.example.pollra.application.team.mapper.TeamContext;
 import com.example.pollra.application.team.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +28,12 @@ public class TeamController {
 	}
 	
 	@PostMapping
-	public Response.FindOne add(@Valid @RequestBody Request.Add add) {
-		return mapper.toFindOne(teamService.create(mapper.toEntity(add)));
+	public Response.FindOne add(@Valid @RequestBody Request.Merge merge) {
+		return mapper.toFindOne(teamService.create(mapper.toEntity(TeamContext.create(), merge, 0L)));
 	}
  
 	@PutMapping("/{teamId}")
-	public Response.FindOne modify(@PathVariable Long teamId, @Valid @RequestBody Request.Modify modify) {
-		return mapper.toFindOne(teamService.modify(teamId, mapper.toEntity(modify)));
+	public Response.FindOne modify(@PathVariable Long teamId, @Valid @RequestBody Request.Merge merge) {
+		return mapper.toFindOne(teamService.modify(teamId, mapper.toEntity(TeamContext.create(), merge, teamId)));
 	}
 }

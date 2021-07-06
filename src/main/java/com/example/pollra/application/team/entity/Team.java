@@ -21,15 +21,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Team {
+
 	@Id
 	@GeneratedValue
-	@Column(name="TEAM_ID")
 	private Long id;
 	
 	private String name;
 	
 	@BatchSize(size=10)
-	@OneToMany(mappedBy="team", cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval=true)
+	@OneToMany(mappedBy="team", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Member> members = new ArrayList<>();
-	
 }

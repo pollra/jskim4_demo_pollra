@@ -1,8 +1,8 @@
 package com.example.pollra.application.team.mapper;
 
-import com.example.pollra.application.team.entity.Member;
 import com.example.pollra.application.team.entity.Team;
-import com.example.pollra.application.team.form.TeamForm;
+import com.example.pollra.application.team.form.TeamForm.Request;
+import com.example.pollra.application.team.form.TeamForm.Response;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -13,27 +13,12 @@ import org.mapstruct.factory.Mappers;
  **********************************************************************************************************************/
 @Mapper(unmappedTargetPolicy=ReportingPolicy.IGNORE)
 public interface TeamMapper {
-	TeamMapper mapper =Mappers.getMapper(TeamMapper.class);
-	
-	default Team modify(Team source, @MappingTarget Team target){
-		if(null == target) return null;
+	TeamMapper mapper = Mappers.getMapper(TeamMapper.class);
 
-		target.setName(source.getName());
-		for (int i=0; i < source.getMembers().size(); i++) {
-			modifyMember(source.getMembers().get(i), target.getMembers().get(i));
-		}
-		return target;
-	}
-	
+	Team toEntity(@Context TeamContext context, Request.Merge form, Long id);
+
 	@Mapping(target="id", ignore=true)
-	@Mapping(target="team", ignore=true)
-	Member modifyMember(Member source, @MappingTarget Member target);
-	
-	Team toEntity(TeamForm.Request.Add form);
-	Team toEntity(TeamForm.Request.Modify form);
-	
-	Member toEntityMember(TeamForm.Request.Add.Member form);
-	Member toEntityMember(TeamForm.Request.Modify.Member form);
-	
-	TeamForm.Response.FindOne toFindOne(Team entity);
+	Team modify(Team source, @MappingTarget Team target);
+
+	Response.FindOne toFindOne(Team entity);
 }

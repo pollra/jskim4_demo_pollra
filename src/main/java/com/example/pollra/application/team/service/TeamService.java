@@ -17,6 +17,7 @@ import static com.example.pollra.application.team.mapper.TeamMapper.mapper;
  * @description MemberService
  **********************************************************************************************************************/
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class TeamService {
 	
@@ -28,14 +29,9 @@ public class TeamService {
 	}
 	
 	public Team create(Team team) {
-		team.setMembers(team.getMembers().stream().map(member -> {
-			member.setTeam(team);
-			return member;
-		}).collect(Collectors.toList()));
 		return teamRepository.save(team);
 	}
-	
-	@Transactional
+
 	public Team modify(Long teamId, Team team) {
 		return mapper.modify(team, get(teamId));
 	}

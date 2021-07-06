@@ -40,6 +40,14 @@ dependencies {
 
 }
 
+compileJava {
+    options.compilerArgs = [
+             '-Amapstruct.suppressGeneratorTimestamp=true'
+            ,'-Amapstruct.defaultComponentModel=spring'
+            ,'-Amapstruct.unmappedTargetPolicy=IGNORE'
+    ]
+}
+
 test {
     useJUnitPlatform()
 }
